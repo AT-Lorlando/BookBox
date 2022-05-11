@@ -1,0 +1,18 @@
+@if(flashMessages.has('success'))
+    <div class="w-80 rounde-lg self-center text-xl text-white bg-teal-500 text-center p-2">
+        {{ flashMessages.get('success') }}
+    </div>
+@endif
+
+@if(flashMessages.has('info'))
+    <div class="w-80 rounde-lg self-center text-xl text-white bg-teal-500 text-center p-2">
+        {{ flashMessages.get('info') }}
+    </div>
+@endif
+
+@if(flashMessages.has('error'))
+    <div class="w-80 rounde-lg self-center text-xl text-white bg-red-500 text-center p-2">
+        {{ flashMessages.get('error') }}
+    </div>
+@endif
+

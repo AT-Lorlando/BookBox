@@ -1,0 +1,36 @@
+@layout('layout')
+
+@section('body')
+    {{--  A panel asking the user if he want to put a book on a box or to search a book in the boxes  --}}
+    <div class="flex flex-col w-3/5 space-y-4 bg-white self-center">
+        <h3 class="text-3xl w-full text-center">
+            What do you want to do ?
+        </h3>
+        <div class="flex flex-row justify-evenly w-full">
+            @!component('components/button', {
+                title: 'Add a book',
+                size: 'large',
+                route: route('Books.add')
+            })
+            @!component('components/button', {
+                title: 'Pick a book',
+                size: 'large',
+                route: route('Books.pick')
+            })
+            
+        </div>
+        {{--  A div with other buttons like 'Post a review', 'Ask for help', 'Find a box'  --}}
+        <div class="flex flex-row justify-evenly w-full">
+            @!component('components/button', {
+                title: 'Search a book',
+                size: 'large',
+                route: route('Books.search'),
+            })
+            @!component('components/button', {
+                title: 'Find a box',
+                size: 'large',
+                route: '#', //route('box.search')
+            })
+    </div>
+
+@endsection

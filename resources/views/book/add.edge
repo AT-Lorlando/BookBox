@@ -1,0 +1,45 @@
+@layout('layout')
+
+@section('body')
+
+    <form action='#' method="post"  enctype="multipart/form-data">
+            
+        <h1> In which box did you add the book ? </h1>
+
+        <select name="box_id" id="box_id">
+            @each(box in boxes)
+                <option value="{{ box.id }}">{{ box.location }}
+                </option>
+            @endeach
+        </select>
+
+        <h1> What is the title of the book ? </h1>
+
+        <input type="text" name="title" id="title" placeholder="Title of the book">
+
+        <h1> What is the author of the book ? </h1>
+
+        <input type="text" name="author" id="author" placeholder="Author of the book">
+
+        <h1> Can you describe the book ? </h1>
+
+        <textarea rows=3 type="text" name="description" id="description" placeholder="Description of the book">
+        </textarea>
+        
+
+        <div>
+            @!component('components/button', {
+                title: 'Cancel',
+                size: 'large',
+                route: '/'
+            })
+
+            @!component('components/button', {
+                title: 'Validate',
+                size: 'large',
+                type: 'submit'
+            })
+        </div>
+    </form>
+
+@endsection

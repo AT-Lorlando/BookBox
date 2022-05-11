@@ -1,0 +1,46 @@
+@layout('layout')
+
+@section('body')
+
+    <form action='#' method="post"  enctype="multipart/form-data">
+            
+        <h1> Wich book did you pick ? </h1>
+
+        @if(books.length > 0)
+        <select name="id" id="id">
+            @each(book in books)
+                <option value="{{ book.id }}">{{ book.title }}
+                @each(box in boxes)
+                    @if(box.id == book.box_id)
+                        - {{ box.location }}
+                    @endif
+                @endeach
+                </option>
+            @endeach
+        </select>
+        
+
+        <div>
+            @!component('components/button', {
+                title: 'Cancel',
+                size: 'large',
+                route: '/'
+            })
+
+            @!component('components/button', {
+                title: 'Validate',
+                size: 'large',
+                type: 'submit'
+            })
+        </div>
+        @else
+            <p>There is actually no books in the boxes</p>
+            @!component('components/button', {
+                title: 'Go back',
+                size: 'large',
+                route: '/'
+            })
+        @endif
+    </form>
+
+@endsection

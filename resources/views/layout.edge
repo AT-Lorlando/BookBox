@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AdonisJS - A fully featured web framework for Node.js</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  @entryPointStyles('app')
+  @entryPointScripts('app')
+</head>
+<body class="flex flex-col w-full h-screen items-center bg-red-500">
+  @!component('components/header')
+  <div class="flex flex-col w-4/5 h-full bg-blue-500">
+    @!component('components/flash')
+
+    @!section('body')
+  </div>
+</body>
+</html>

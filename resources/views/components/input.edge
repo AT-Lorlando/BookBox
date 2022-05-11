@@ -1,0 +1,32 @@
+<div>
+    <label for="{{ name }}">{{ label }}</label>
+
+    @if(type == 'textarea')
+        <textarea class="form-control" type="text" name="{{ name }}" id="{{ name }}">{{ value ? value : '' }}</textarea>
+
+    @elseif(type == 'select')
+        <select class="form-control" name="{{ name }}" id="{{ name }}">
+            @each(option in options)
+                <option value="{{ option }}" {{ options[0] == option.value ? 'selected' : '' }}>
+                    {{ option }}
+                </option>
+            @endeach
+        </select>
+
+    @elseif(type == 'password')
+        <input class="form-control" type="password" name="{{ name }}" id="{{ name }}" value="{{ value ? value : '' }}">
+        
+    @elseif(type == 'checkbox')
+        <input class="form-control" type="checkbox" name="{{ name }}" id="{{ name }}" value="{{ value ? value : '' }}">
+
+    @else
+        <input class="form-control {{flashMessages.has(`errors.${name}`) ? 'is-invalid' : ''}}" type="text" name="{{ name }}" id="{{ name }}" value="{{ value ? value : '' }}">
+    @endif
+
+
+    @if(flashMessages.has(`errors.${name}`))
+        <div class="invalid-feedback">
+            {{ flashMessages.get(`errors.${name}`)}}
+        </div>
+    @endif
+</div>

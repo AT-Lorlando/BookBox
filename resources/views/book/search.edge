@@ -1,0 +1,29 @@
+@layout('layout')
+
+@section('body')
+
+    <div class="grid grid-cols-3 w-full h-full p-8 justify-evenly overflow-y-auto">
+        @each(box in boxes)
+            <div class="flex flex-col mx-auto h-60 w-80 rounded-lg border-white overflow-clip border-2 ">
+                <h3 class="bg-teal-500 text-white text-center py-2 text-xl">{{ box.location }}</h3>
+                <div class="flex flex-col overflow-y-auto items-center divide-blue-500">
+                    @each(book in box.books)
+                        <a href={{ route('Books.show', {id: book.id}) }} class="flex flex-col items-center hover:cursor-pointer">
+                            <h4 class="text-lg text-center">{{ book.title }}</h4>
+                            <h4 class="text-lg text-center">{{ book.author }}</h4>
+                        </a>
+                    @endeach
+                </div>
+            </div>
+        @endeach
+    </div>        
+
+        <div>
+            @!component('components/button', {
+                title: 'Cancel',
+                size: 'large',
+                route: '/'
+            })
+        </div>
+
+@endsection

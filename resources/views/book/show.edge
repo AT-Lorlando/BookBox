@@ -1,0 +1,81 @@
+@layout('layout')
+
+@section('body')
+
+    <div class="flex flex-row justify-center w-full h-full py-8">
+        <div class="w-1/2">
+            <div class="flex flex-col items-center">
+                <h1 class="text-3xl font-bold text-center">
+                    {{ book.title }}
+                </h1>
+                <h1 class="text-3xl text-center">
+                    {{ book.author }}
+                </h1>
+                <h1 class="text-2xl text-center">
+                    {{ book.description }}
+                </h1>
+            </div>
+        </div>
+
+        <div class="flex flex-col w-1/2 h-full items-center">
+            @if(note)
+                <div class="h-20 text-5xl">
+                Note: {{ note }}/5
+                </div>
+            @else
+                <div class="h-20 text-2xl">
+                    Not enough notes for this book
+                </div>
+            @endif
+                <h1>
+                    Add a note
+                </h1>
+                    <form action={{ route('Books.note', {book_id: book.id}) }} method="POST" enctype="multipart/form-data" class="h-16 flex flew-row w-40 mb-16">
+                        <select name="value" class="text-lg w-1/2 rounded-l-lg text-center">
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        
+                    <button type="submit" class="rounded-r-lg w-1/2 border-white border-2">
+                        Submit
+                    </button>
+                </form>
+            <div class="flex flex-col items-center border-2 border-white rounded-lg h-1/2 w-3/4 justify-between overflow-clip">
+                <h1 class="text-3xl font-bold text-center">
+                    Review
+                </h1>
+                <div class="flex flex-col-reverse items-centerspace-y-4 divide-grey-200 overflow-y-auto w-full h-full">
+                @each(comment in comments)
+                    <div class="flex flex-row border-2 border-blue-500 py-2 text-xl w-full">
+                        <p class="px-2">Anonyme:</p>
+                        <h1 class="w-full text-right px-2">
+                            {{ comment.value }}
+                        </h1>
+                    </div>
+                @endeach
+                </div>
+
+                <form action={{ route('Books.comment', {book_id: book.id}) }} method="POST" enctype="multipart/form-data" class="h-16 flex flew-row w-full">
+                    <textarea rows=2 type="text" name="value" class="pl-2 border-2 border-blue-500 w-full text-black" placeholder="Comment...">
+                    </textarea>
+                    <button type="submit" class="rounded-r-lg w-20 border-white border-2">
+                        Submit
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="pb-32">
+        @!component('components/button', {
+            title: 'Cancel',
+            size: 'large',
+            route: '/'
+        })
+    </div>
+
+@endsection

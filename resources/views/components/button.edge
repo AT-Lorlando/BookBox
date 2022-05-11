@@ -1,0 +1,10 @@
+
+@if(type == 'submit')
+<button type='submit' class="{{ size == 'small' ? 'w-20' : 'w-40' }} text-center align-middle p-2 border-2 border-white text-xl rounded-md transition ease-in-out delay-150 bg-red-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300">
+    {{ title }}
+</button>
+@else
+<a href="{{ route }}" class="{{ size == 'small' ? 'w-20' : 'w-40' }} text-center align-middle p-2 border-2 border-white text-xl rounded-md transition ease-in-out delay-150 bg-blue-500 hover:-translate-y-1 hover:scale-110 hover:bg-indigo-500 duration-300">
+    {{ title }}
+</a>
+@endif
